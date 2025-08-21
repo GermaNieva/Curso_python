@@ -1,4 +1,6 @@
 # Metodos de cadenas
+#los metodos de cadenas son funciones que se pueden aplicar a las cadenas de texto en Python.
+# Estos metodos permiten realizar operaciones comunes como convertir a mayusculas, minusculas, buscar subcadenas, reemplazar texto, entre otros.
 cadena = "Hola, Mundo!"
 cadena2 = "Python es genial"
 
@@ -24,6 +26,8 @@ print("Posición de 'Mundo' usando index:", posicion_index)
 
 # isnumeric sirve para verificar si una cadena es numérica
 es_numerica = cadena.isnumeric()  # Verifica si la cadena es numérica
+#devuelve True si todos los caracteres son dígitos
+print("La cadena es numérica:", es_numerica)
 
 #si es alfanumérica, devuelve True si todos los caracteres son alfanuméricos
 es_alfanumerica = cadena.isalnum()  # Verifica si la cadena es alfanumérica
@@ -57,6 +61,12 @@ nueva_cadena = cadena.replace("Mundo", "Python")  # Reemplaza una subcadena por 
 print("Cadena después del reemplazo:", nueva_cadena) #esto imprimira "Hola, Python!"
 
 #dividimos una cadena en una lista de subcadenas
+#los separadores pueden ser espacios, comas, puntos, etc.
+lista_subcadenas = cadena.split()  # Divide la cadena en una lista de subcadenas
+print("Lista de subcadenas:", lista_subcadenas)  # Imprime la lista
+#podemos especificar un separador
+cadena = "Python, Java, C++, JavaScript"
+print("Cadena original:", cadena)
 lista_subcadenas = cadena.split(", ")  # Divide la cadena en una lista de subcadenas
 print("Lista de subcadenas:", lista_subcadenas)  # Imprime la lista
 

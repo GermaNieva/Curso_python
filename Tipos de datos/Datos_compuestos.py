@@ -22,6 +22,11 @@ print(lista)  #esto mostrará ['ivi', 'Iván', 2, True, 1.85]
 #print(tupla)  #esto no se ejecutará debido al error anterior
 
 # Creando un conjunto set en Python
+# Los conjuntos son útiles cuando necesitas almacenar elementos únicos y no te importa el orden.
+# Se definen con llaves {} o usando la función set().
+#ejemplo con set()
+conjunto = set(["ivi", "germán", 2, True, 1.85])
+print(conjunto)  #esto mostrará los elementos del conjunto en un orden aleatorio
 # Los conjuntos son colecciones desordenadas de elementos únicos. Se definen con llaves {}
 
 conjunto= {"ivi","germán",2,True,1.85}
@@ -48,7 +53,8 @@ print(diccionario["nombre"])  #esto mostrará "ivi"
 print(diccionario["apellido"])  #esto mostrará "germán"
 
 # Puedes agregar o modificar elementos en un diccionario usando su clave.
-
+#se puede acceder a los valores del diccionario usando las claves entre corchetes.
+diccionario["edad"] = 2  #cambiamos la edad a 2
 diccionario["edad"] = 3  #cambiamos la edad a 3 
 
 print(diccionario["edad"])  #esto mostrará 3

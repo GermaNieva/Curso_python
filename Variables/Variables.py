@@ -48,6 +48,12 @@ Mensaje = "Hola, Ana! Tienes 30 años y vives en Madrid."
 mi_variable = 10
 
 
+print(mi_variable)  #esto mostrará 10 en la consola
+
+lista=[]
+
+lista.append()
+
 
 
 
