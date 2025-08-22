@@ -26,17 +26,30 @@ Incluir conjuntos (set) y tuplas (con desempaquetado)."""
 #7) Eliminar producto
 #8) Salir
 
+from datetime import datetime
+
 tienda=[]
+ventas=[]
 def agregar_producto():
-    codigo = input("Ingrese el código del producto: ")
-    nombre = input("Ingrese el nombre del producto: ")
-    precio = float(input("Ingrese el precio del producto: "))
-    stock = int(input("Ingrese la cantidad en stock: "))
-    producto = {"codigo": codigo,
+    if not tienda:
+        nombre = input("Ingrese el nombre del producto: ")
+        precio = float(input("Ingrese el precio del producto: "))
+        stock = int(input("Ingrese la cantidad en stock: "))
+        producto = {"codigo": 1,
                 "nombre": nombre,
                 "precio": precio,
                 "stock": stock}
-    tienda.append(producto)
+        tienda.append(producto)
+    else:   
+        nombre = input("Ingrese el nombre del producto: ")
+        precio = float(input("Ingrese el precio del producto: "))
+        stock = int(input("Ingrese la cantidad en stock: "))
+        ultimo = tienda[-1]["codigo"]
+        producto = {"codigo": ultimo+1,
+                "nombre": nombre,
+                "precio": precio,
+                "stock": stock}
+        tienda.append(producto)
     
 def listar_productos():
         if not tienda:
@@ -60,17 +73,32 @@ def vender_producto():
         codigo = input("Ingrese el código del producto a vender: ")
         cantidad = int(input("Ingrese la cantidad a vender: "))
         for producto in tienda:
-            if producto['codigo'] == codigo:
+            if producto['codigo'] == int(codigo):
                 if producto['stock'] >= cantidad:
                     producto['stock'] -= cantidad
                     print(f"Venta realizada, vendiste:{cantidad, producto["nombre"]} por un total de {cantidad*producto["precio"]}. Stock restante: {producto['stock']}")
+                    fecha= datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    Transaccion={
+                        "venta":cantidad,
+                        "producto":producto["nombre"],
+                        "total":cantidad*producto["precio"],
+                        "fecha":fecha
+                        }
+                    ventas.append(Transaccion)
+                        
                 else:
                     print("Stock insuficiente.")
                 return
         print("Producto no encontrado.")
+        
+def reporte():
+    if not ventas:
+         print("No se encontraron transacciones.")
+    else:
+        for transaccion in ventas:
+            print(f"venta: {transaccion['venta']}, Nombre: {transaccion['producto']}, total: {transaccion['total']}, Fecha: {transaccion['fecha']}")
 
-
-menu= """Bienvenido al MiniMarket CLI
+menu = """Bienvenido al MiniMarket CLI
 Seleccione una opción:
 1) Agregar producto
 2) Listar productos
@@ -97,9 +125,12 @@ def iniciar():
         elif opcion == "4":
             print("Opción 4: Vender producto")
             vender_producto()
+        elif opcion == "5":
+            print("Reporte de Ventas")
+            reporte()
         else: 
             print("opcion incorrecta, intente de nuevo")
-            continue
+            break
         
 iniciar()
 
