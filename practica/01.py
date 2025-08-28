@@ -31,25 +31,17 @@ from datetime import datetime
 tienda=[]
 ventas=[]
 def agregar_producto():
-    if not tienda:
-        nombre = input("Ingrese el nombre del producto: ")
-        precio = float(input("Ingrese el precio del producto: "))
-        stock = int(input("Ingrese la cantidad en stock: "))
-        producto = {"codigo": 1,
-                "nombre": nombre,
-                "precio": precio,
-                "stock": stock}
-        tienda.append(producto)
-    else:   
-        nombre = input("Ingrese el nombre del producto: ")
-        precio = float(input("Ingrese el precio del producto: "))
-        stock = int(input("Ingrese la cantidad en stock: "))
-        ultimo = tienda[-1]["codigo"]
-        producto = {"codigo": ultimo+1,
-                "nombre": nombre,
-                "precio": precio,
-                "stock": stock}
-        tienda.append(producto)
+    nombre = input("Ingrese el nombre del producto: ")
+    precio = float(input("Ingrese el precio del producto: "))
+    stock = int(input("Ingrese la cantidad en stock: "))
+    codigo = tienda[-1][codigo]+1 if tienda else 1 
+    producto = {
+            "codigo":codigo,
+            "nombre": nombre,
+            "precio": precio,
+            "stock": stock,
+            }
+    tienda.append(producto)
     
 def listar_productos():
         if not tienda:
@@ -62,7 +54,7 @@ def buscar_producto():
         busqueda = input("Ingrese el código o nombre del producto a buscar: ")
         encontrado = False
         for producto in tienda:
-            if producto['codigo'] == busqueda or producto['nombre'].lower() == busqueda.lower():
+            if str(producto['codigo']) == (busqueda) or producto['nombre'].lower() == busqueda.lower():
                 print(f"Producto encontrado: {producto}")
                 encontrado = True
                 break
@@ -70,13 +62,13 @@ def buscar_producto():
             print("Producto no encontrado.")
             
 def vender_producto():
-        codigo = input("Ingrese el código del producto a vender: ")
+        codigo = int(input("Ingrese el código del producto a vender: "))
         cantidad = int(input("Ingrese la cantidad a vender: "))
         for producto in tienda:
-            if producto['codigo'] == int(codigo):
+            if producto['codigo'] == codigo:
                 if producto['stock'] >= cantidad:
                     producto['stock'] -= cantidad
-                    print(f"Venta realizada, vendiste:{cantidad, producto["nombre"]} por un total de {cantidad*producto["precio"]}. Stock restante: {producto['stock']}")
+                    print(f"Venta realizada, vendiste: (cantidad) x {producto["nombre"]} por un total de {cantidad*producto["precio"]:.2f}. Stock restante: {producto['stock']}")
                     fecha= datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                     Transaccion={
                         "venta":cantidad,
@@ -111,7 +103,7 @@ Seleccione una opción:
 
 def iniciar():
     while True:
-        print(f"MiniMarket CLI iniciado./n {menu}")
+        print(f"MiniMarket CLI iniciado.\n {menu}")
         opcion = input("Ingrese el número de la opción deseada: ")
         if opcion == "1":
             print("Opción 1: Agregar producto")
