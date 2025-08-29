@@ -30,11 +30,12 @@ from datetime import datetime
 
 tienda=[]
 ventas=[]
+
 def agregar_producto():
     nombre = input("Ingrese el nombre del producto: ")
     precio = float(input("Ingrese el precio del producto: "))
     stock = int(input("Ingrese la cantidad en stock: "))
-    codigo = tienda[-1][codigo]+1 if tienda else 1 
+    codigo = tienda[-1]["codigo"]+1 if tienda else 1 
     producto = {
             "codigo":codigo,
             "nombre": nombre,
@@ -43,6 +44,7 @@ def agregar_producto():
             }
     tienda.append(producto)
     
+
 def listar_productos():
         if not tienda:
             print("No hay productos en la tienda.")
@@ -50,6 +52,8 @@ def listar_productos():
             for producto in tienda:
                 print(f"Código: {producto['codigo']}, Nombre: {producto['nombre']}, Precio: {producto['precio']}, Stock: {producto['stock']}")
                 
+
+
 def buscar_producto():
         busqueda = input("Ingrese el código o nombre del producto a buscar: ")
         encontrado = False
@@ -61,6 +65,9 @@ def buscar_producto():
         if not encontrado:
             print("Producto no encontrado.")
             
+
+
+
 def vender_producto():
         codigo = int(input("Ingrese el código del producto a vender: "))
         cantidad = int(input("Ingrese la cantidad a vender: "))
@@ -83,12 +90,17 @@ def vender_producto():
                 return
         print("Producto no encontrado.")
         
+
+
 def reporte():
-    if not ventas:
+    seleccion=input(f"Selecciona una opcion \n 1: Cantidad de ventas y ingresos diarios \n 2: Ventas Mensuales \n 3: Productos mas Vendidos \n 4: Evolucion de ventas en el tiempo " )
+    if seleccion == "1":
          print("No se encontraron transacciones.")
     else:
         for transaccion in ventas:
             print(f"venta: {transaccion['venta']}, Nombre: {transaccion['producto']}, total: {transaccion['total']}, Fecha: {transaccion['fecha']}")
+
+
 
 menu = """Bienvenido al MiniMarket CLI
 Seleccione una opción:
