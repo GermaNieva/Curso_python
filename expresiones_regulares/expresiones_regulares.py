@@ -56,3 +56,11 @@ Y Esta es la final (linea 3) definitiva mi capitan'''
 resultado = re.findall(r'\d{2,4}|Hola',texto)
 
 print(resultado)
+
+
+
+'hola mundo mi nombre es "German" '
+
+"hola mundo \"pienso y luego existo\""
+
+
